@@ -1,0 +1,16 @@
+{
+  "short_name": "Giri Portfolio",
+  "name": "Giri - AI + Embedded Systems Engineer Portfolio",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#0f172a",
+  "description": "Personal portfolio website showcasing skills and projects in AI and Embedded Systems"
+} 
