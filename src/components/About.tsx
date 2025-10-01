@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { User, GraduationCap, MapPin, Heart } from 'lucide-react';
+import profile from '../assets/profil1.png' // ✅ import photo
 
 const About: React.FC = () => {
   return (
@@ -38,7 +39,7 @@ const About: React.FC = () => {
               {/* Profile Photo */}
               <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl profile-photo">
                 <img 
-                  src="/images/profil1.png" 
+                  src={profile}   // ✅ imported image path
                   alt="Girish - Engineering Student & AI Enthusiast"
                   className="w-full h-full object-cover object-center"
                   onError={(e) => {
@@ -79,7 +80,7 @@ const About: React.FC = () => {
             </h3>
             
             <p className="text-lg text-gray-300 leading-relaxed">
-              I'm a 2nd-year BE Computer Science student at{' '}
+              I'm a 3rd-year BE Computer Science student at{' '}
               <span className="text-neon-green font-semibold">RV College of Engineering</span>. 
               My passion lies at the intersection of AI, Embedded Systems, and Edge AI, where I strive 
               to solve real-world problems that make a meaningful impact.
@@ -152,4 +153,4 @@ const About: React.FC = () => {
   );
 };
 
-export default About; 
+export default About;
