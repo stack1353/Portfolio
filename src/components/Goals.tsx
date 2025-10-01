@@ -5,8 +5,8 @@ import { Target, Rocket, Building2, Globe, Award, Heart } from 'lucide-react';
 const Goals: React.FC = () => {
   const goals = [
     {
-      title: "AI + Embedded Systems Engineer",
-      description: "Become a leading expert in the intersection of AI and Embedded Systems, developing cutting-edge solutions for real-world problems.",
+      title: "AI/ML Engineer",
+      description: "Become a leading expert in Artificial Intelligence and Machine Learning, developing solutions that drive innovation and societal impact.",
       icon: Target,
       color: "neon-blue",
       timeline: "Long-term Career Goal"
@@ -20,7 +20,7 @@ const Goals: React.FC = () => {
     },
     {
       title: "National Contribution",
-      description: "Contribute to the nation's technological advancement through defense, space, and infrastructure projects.",
+      description: "Contribute to the nation's technological advancement through defense, space, agriculture, and infrastructure projects.",
       icon: Globe,
       color: "neon-green",
       timeline: "Patriotic Mission"
@@ -41,7 +41,7 @@ const Goals: React.FC = () => {
     },
     {
       title: "Innovation & Impact",
-      description: "Create innovative solutions that solve real-world problems in agriculture, surveillance, defense, and beyond.",
+      description: "Create AI-driven solutions that solve real-world problems in healthcare, agriculture, surveillance, and smart cities.",
       icon: Rocket,
       color: "neon-orange",
       timeline: "Innovation Focus"
@@ -83,7 +83,7 @@ const Goals: React.FC = () => {
             My <span className="gradient-text">Goals</span> & Aspirations
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Vision for the future and the impact I want to create in the world of technology
+            Vision for the future and the impact I want to create in the world of AI and technology
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto rounded-full mt-6"></div>
         </motion.div>
@@ -106,29 +106,28 @@ const Goals: React.FC = () => {
               </div>
               
               <h3 className="text-3xl font-bold text-white mb-4">
-                Primary Goal: <span className="gradient-text">AI + Embedded Systems Engineer</span>
+                Primary Goal: <span className="gradient-text">AI/ML Engineer</span>
               </h3>
               
               <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                My ultimate aspiration is to become a leading expert in the intersection of Artificial Intelligence 
-                and Embedded Systems. I want to develop cutting-edge solutions that bridge the gap between 
-                software intelligence and hardware capabilities, creating innovative systems that can operate 
-                at the edge and solve real-world problems in fields like agriculture, surveillance, defense, 
+                My ultimate aspiration is to become a leading expert in Artificial Intelligence and Machine Learning. 
+                I want to build intelligent systems that can transform industries, solve critical problems, 
+                and push the boundaries of innovation in areas such as healthcare, agriculture, defense, 
                 and smart cities.
               </p>
               
               <div className="mt-6 flex flex-wrap justify-center gap-4">
                 <span className="px-4 py-2 bg-neon-blue/20 text-neon-blue rounded-full text-sm font-medium border border-neon-blue/30">
-                  Edge AI
+                  Machine Learning
                 </span>
                 <span className="px-4 py-2 bg-neon-purple/20 text-neon-purple rounded-full text-sm font-medium border border-neon-purple/30">
-                  Computer Vision
+                  Deep Learning
                 </span>
                 <span className="px-4 py-2 bg-neon-green/20 text-neon-green rounded-full text-sm font-medium border border-neon-green/30">
-                  IoT Systems
+                  Computer Vision
                 </span>
                 <span className="px-4 py-2 bg-neon-pink/20 text-neon-pink rounded-full text-sm font-medium border border-neon-pink/30">
-                  Real-time Processing
+                  NLP
                 </span>
               </div>
             </div>
@@ -195,7 +194,7 @@ const Goals: React.FC = () => {
             </h3>
             <p className="text-gray-400 mb-6">
               I'm actively seeking opportunities to work on challenging projects that combine AI, 
-              Embedded Systems, and real-world impact. Let's connect and explore how we can 
+              Machine Learning, and real-world impact. Let's connect and explore how we can 
               work together to create innovative solutions.
             </p>
             <motion.button
@@ -213,4 +212,4 @@ const Goals: React.FC = () => {
   );
 };
 
-export default Goals; 
+export default Goals;

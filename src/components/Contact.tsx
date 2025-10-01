@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { personal, socialLinks as sharedSocialLinks } from '../config/personal';
+import { postJson } from '../utils/api';
+const ContactMap = React.lazy(() => import('./ContactMap'));
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -18,10 +20,21 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    try {
+      setStatus('loading');
+      setError(null);
+      await postJson('/api/contact', formData);
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (err: any) {
+      setStatus('error');
+      setError(err?.message || 'Something went wrong');
+    }
   };
 
   const contactInfo = [
@@ -226,12 +239,32 @@ const Contact: React.FC = () => {
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-white font-semibold rounded-lg hover-glow flex items-center justify-center space-x-2 transition-all duration-300"
+                disabled={status === 'loading'}
+                className="w-full px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-white font-semibold rounded-lg hover-glow flex items-center justify-center space-x-2 transition-all duration-300 disabled:opacity-60"
               >
                 <Send size={20} />
-                <span>Send Message</span>
+                <span>{status === 'loading' ? 'Sending...' : 'Send Message'}</span>
               </motion.button>
+
+              {status === 'success' && (
+                <p className="text-green-400 text-sm">Thanks! I will get back to you soon.</p>
+              )}
+              {status === 'error' && (
+                <p className="text-red-400 text-sm">{error}</p>
+              )}
             </form>
+          </motion.div>
+          {/* Map */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="lg:col-span-2"
+          >
+            <Suspense fallback={<div className="h-80 glass-card animate-pulse" />}> 
+              <ContactMap />
+            </Suspense>
           </motion.div>
         </div>
       </div>

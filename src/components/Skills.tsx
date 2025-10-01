@@ -1,83 +1,18 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Code2, 
-  Brain, 
-  Cpu, 
-  Globe, 
-  Zap, 
-  GitBranch,
-  Server,
-  Eye
-} from 'lucide-react';
+import {
+  Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip
+} from 'recharts';
+
+const skillsData = [
+  { category: 'AI/ML', level: 80 },
+  { category: 'Embedded', level: 75 },
+  { category: 'Web', level: 85 },
+  { category: 'DSA', level: 70 },
+  { category: 'Tools', level: 78 }
+];
 
 const Skills: React.FC = () => {
-  const skillCategories = [
-    {
-      title: "Frontend Development",
-      color: "neon-blue",
-      icon: Globe,
-      skills: ["React", "HTML/CSS", "JavaScript", "TypeScript", "Tailwind CSS"]
-    },
-    {
-      title: "Backend Development",
-      color: "neon-purple",
-      icon: Server,
-      skills: ["Node.js", "Express", "MongoDB", "SQL", "REST APIs"]
-    },
-    {
-      title: "Programming Languages",
-      color: "neon-green",
-      icon: Code2,
-      skills: ["Python", "C++", "Java", "JavaScript", "TypeScript"]
-    },
-    {
-      title: "AI & Machine Learning",
-      color: "neon-pink",
-      icon: Brain,
-      skills: ["TensorFlow", "PyTorch", "Computer Vision", "YOLO", "OpenCV"]
-    },
-    {
-      title: "Embedded Systems",
-      color: "neon-cyan",
-      icon: Cpu,
-      skills: ["Raspberry Pi", "Arduino", "IoT", "Edge AI", "Microcontrollers"]
-    },
-    {
-      title: "Data Structures & Algorithms",
-      color: "neon-blue",
-      icon: GitBranch,
-      skills: ["DSA", "Problem Solving", "Algorithm Design", "Optimization"]
-    },
-    {
-      title: "Computer Vision",
-      color: "neon-green",
-      icon: Eye,
-      skills: ["OpenCV", "Image Processing", "Object Detection", "Sony IMX477"]
-    },
-    {
-      title: "Tools & Technologies",
-      color: "neon-purple",
-      icon: Zap,
-      skills: ["Git", "Docker", "Linux", "VS Code", "Postman"]
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 relative">
       {/* Background Elements */}
@@ -98,97 +33,53 @@ const Skills: React.FC = () => {
             My <span className="gradient-text">Skills</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            A comprehensive toolkit of technologies and skills I've developed through projects and learning
+            A high-level view of my proficiency across core domains
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto rounded-full mt-6"></div>
         </motion.div>
 
+        {/* Radar Chart */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.8 }}
+          className="glass-card p-6 hover-glow"
         >
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: `0 0 30px rgba(0, 212, 255, 0.3)`
-              }}
-              className="group glass-card p-6 hover-glow cursor-pointer"
-            >
-              {/* Category Header */}
-              <div className="flex items-center space-x-3 mb-4">
-                <div className={`w-12 h-12 bg-${category.color}/20 rounded-xl flex items-center justify-center group-hover:bg-${category.color}/30 transition-colors duration-300`}>
-                  <category.icon size={24} className={`text-${category.color}`} />
-                </div>
-                <h3 className="text-xl font-bold text-white">{category.title}</h3>
-              </div>
-
-              {/* Skills List */}
-              <div className="space-y-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skillIndex}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: skillIndex * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center space-x-2"
-                  >
-                    <div className={`w-2 h-2 bg-${category.color} rounded-full`}></div>
-                    <span className="text-gray-300 group-hover:text-white transition-colors duration-300">
-                      {skill}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Hover Effect Border */}
-              <div className={`absolute inset-0 rounded-2xl border border-${category.color}/20 group-hover:border-${category.color}/40 transition-all duration-300`}></div>
-            </motion.div>
-          ))}
+          <div className="h-96">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart data={skillsData} outerRadius={120} className="text-gray-300">
+                <PolarGrid stroke="rgba(255,255,255,0.1)" />
+                <PolarAngleAxis dataKey="category" tick={{ fill: '#9CA3AF', fontSize: 12 }} />
+                <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#6B7280', fontSize: 10 }} stroke="rgba(255,255,255,0.1)" />
+                <Tooltip contentStyle={{ background: 'rgba(17,24,39,0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, color: '#E5E7EB' }} />
+                <Radar name="Proficiency" dataKey="level" stroke="#00D4FF" fill="#00D4FF" fillOpacity={0.3} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
         </motion.div>
 
-        {/* Additional Skills Grid */}
+        {/* Legend / Explanations */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mt-16"
+          className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-8"
         >
-          <h3 className="text-2xl font-bold text-center text-white mb-8">
-            Additional <span className="gradient-text">Technologies</span>
-          </h3>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
-            {[
-              "Python", "React", "Node.js", "MongoDB", "C++", "Java",
-              "TensorFlow", "OpenCV", "Raspberry Pi", "IoT", "Git", "Linux"
-            ].map((tech, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="glass-card p-4 text-center hover-glow cursor-pointer"
-              >
-                <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-300">
-                  {tech}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+          {skillsData.map((s, i) => (
+            <div key={i} className="glass-card p-4 text-center">
+              <div className="text-sm text-gray-400">{s.category}</div>
+              <div className="mt-2 text-2xl font-bold text-white">{s.level}%</div>
+              <div className="mt-2 h-1.5 w-full bg-white/10 rounded-full">
+                <div className="h-1.5 bg-neon-blue rounded-full" style={{ width: `${s.level}%` }}></div>
+              </div>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>
   );
 };
 
-export default Skills; 
+export default Skills;

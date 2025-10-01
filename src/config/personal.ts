@@ -4,7 +4,8 @@ export const personal = {
   name: 'Girish',
   email: 'girishgoudar1353@gmail.com',
   phone: '+91 9380619975',
-  location: 'Bangalore, Karnataka, India'
+  location: 'Bangalore, Karnataka, India',
+  githubUsername: 'stack1353'
 };
 
 export const socialLinks = [
@@ -17,7 +18,7 @@ export const socialLinks = [
   {
     name: 'LinkedIn',
     icon: Linkedin,
-    url: 'www.linkedin.com/in/girish-goudar-a14785267',
+    url: 'https://www.linkedin.com/in/girish-goudar-a14785267',
     color: 'neon-purple'
   },
   {

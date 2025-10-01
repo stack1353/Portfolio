@@ -35,15 +35,34 @@ const About: React.FC = () => {
             className="flex justify-center lg:justify-start"
           >
             <div className="relative">
-              {/* Photo Placeholder */}
-              <div className="w-80 h-80 bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 rounded-2xl border border-white/20 flex items-center justify-center backdrop-blur-sm">
-                <User size={120} className="text-neon-blue/60" />
+              {/* Profile Photo */}
+              <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl profile-photo">
+                <img 
+                  src="/images/profil1.png" 
+                  alt="Girish - Engineering Student & AI Enthusiast"
+                  className="w-full h-full object-cover object-center"
+                  onError={(e) => {
+                    // Fallback to placeholder if image doesn't load
+                    e.currentTarget.style.display = 'none';
+                    const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (fallback) {
+                      fallback.style.display = 'flex';
+                    }
+                  }}
+                />
+                {/* Fallback placeholder */}
+                <div className="w-full h-full bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 flex items-center justify-center backdrop-blur-sm" style={{ display: 'none' }}>
+                  <User size={120} className="text-neon-blue/60" />
+                </div>
               </div>
               
               {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-neon-green rounded-full animate-bounce-slow"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-neon-purple rounded-full animate-pulse-slow"></div>
-              <div className="absolute top-1/2 -left-6 w-4 h-4 bg-neon-blue rounded-full animate-float"></div>
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-neon-green rounded-full animate-bounce-slow shadow-lg shadow-neon-green/50"></div>
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-neon-purple rounded-full animate-pulse-slow shadow-lg shadow-neon-purple/50"></div>
+              <div className="absolute top-1/2 -left-6 w-4 h-4 bg-neon-blue rounded-full animate-float shadow-lg shadow-neon-blue/50"></div>
+              
+              {/* Glow effect around photo */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-neon-blue/10 to-neon-purple/10 blur-xl -z-10"></div>
             </div>
           </motion.div>
 

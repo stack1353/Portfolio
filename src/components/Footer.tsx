@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Instagram, Heart, ArrowUp } from 'lucide-react';
+import { Heart, ArrowUp } from 'lucide-react';
+import Logo from './Logo';
 import { personal, socialLinks as sharedSocialLinks } from '../config/personal';
 
 const Footer: React.FC = () => {
@@ -22,12 +23,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-neon-blue to-neon-purple rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">G</span>
-              </div>
-              <span className="text-xl font-bold gradient-text">{personal.name}</span>
-            </div>
+            <Logo size={32} />
               <p className="text-gray-400 text-sm leading-relaxed">
               Engineering Student & Aspiring AI + Embedded Systems Engineer. 
               Passionate about creating innovative solutions that make a real impact.
